@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    OWASP MASVS-NETWORK-001: Configuración de seguridad de red.
+    - Cleartext (HTTP) prohibido en todos los dominios.
+    - Solo HTTPS/TLS permitido.
+    - En debug: se mantiene la restricción pero se permite confiar
+      en certificados locales para herramientas de proxy (ej: Charles, mitmproxy).
+-->
+<network-security-config>
+
+    <!-- Política global: sin cleartext en ningún dominio -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Dominio explícito para la API de Hacker News -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">hacker-news.firebaseio.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!--
+        Debug: permite certificados de usuario para proxies de desarrollo.
+        Este bloque NO aplica en release builds.
+    -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+
+</network-security-config>
