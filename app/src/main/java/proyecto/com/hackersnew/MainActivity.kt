@@ -1,20 +1,22 @@
 package proyecto.com.hackersnew
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import proyecto.com.hackersnew.core.network.RetrofitProvider
-import proyecto.com.hackersnew.features.news.data.remote.HackerNewsApiService
-import proyecto.com.hackersnew.features.news.data.repository.NewsRepositoryImpl
-import proyecto.com.hackersnew.features.news.domain.usecase.GetTopStoriesUseCase
-import proyecto.com.hackersnew.features.news.presentation.NewsScreen
-import proyecto.com.hackersnew.features.news.presentation.NewsViewModel
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import proyecto.com.hackersnew.ui.theme.HackersNewTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,30 +24,29 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        val apiService = RetrofitProvider.createService<HackerNewsApiService>()
-        val repository = NewsRepositoryImpl(apiService)
-        val getTopStoriesUseCase = GetTopStoriesUseCase(repository)
-        val viewModelFactory = NewsViewModel.Factory(getTopStoriesUseCase)
-
         setContent {
             HackersNewTheme {
-                val newsViewModel: NewsViewModel = viewModel(factory = viewModelFactory)
-                val uiState by newsViewModel.uiState.collectAsStateWithLifecycle()
-                val snackbarMessage by newsViewModel.snackbarMessage.collectAsStateWithLifecycle()
-
-                NewsScreen(
-                    uiState = uiState,
-                    onRefresh = newsViewModel::refresh,
-                    onLoadMore = newsViewModel::loadMore,
-                    onStoryClick = { story ->
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(story.url))
-                        startActivity(intent)
-                    },
-                    onRetry = newsViewModel::loadInitial,
-                    snackbarMessage = snackbarMessage,
-                    onSnackbarDismissed = newsViewModel::dismissSnackbar
-                )
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = stringResource(R.string.app_greeting),
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = stringResource(R.string.app_subtitle),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
----
+-****---
 description: Auditoría de seguridad OWASP MASVS sobre los archivos modificados o una ruta específica. Detecta vulnerabilidades y propone fixes.
 ---
 

@@ -2,20 +2,4 @@
     <string name="app_name">HackersNew</string>
     <string name="app_greeting">Hacker News</string>
     <string name="app_subtitle">Tu fuente de noticias tech</string>
-
-    <!-- News Screen -->
-    <string name="news_toolbar_title">Hacker News</string>
-    <string name="news_toolbar_refresh_description">Refrescar noticias</string>
-    <string name="news_button_retry">Reintentar</string>
-    <string name="news_button_refresh">Refrescar</string>
-    <string name="news_empty_message">No hay noticias disponibles</string>
-    <string name="news_error_generic">No se pudo cargar las noticias. Verifica tu conexión a internet.</string>
-    <string name="news_error_pagination">Error al cargar más noticias</string>
-    <string name="news_error_refresh">No se pudo refrescar. Intenta de nuevo.</string>
-    <string name="news_loading_description">Cargando noticias</string>
-    <string name="news_loading_more_description">Cargando más noticias</string>
-    <string name="news_score_points">%1$d pts</string>
-    <string name="news_score_author">by %1$s</string>
-    <string name="news_item_description">Noticia %1$d: %2$s, %3$d puntos por %4$s, %5$d comentarios</string>
-    <string name="news_default_domain">news.ycombinator.com</string>
 </resources>
