@@ -1,4 +1,4 @@
-# HackersNew — Proyecto Mobile Nativo con Agentes IA
+# Framework de Desarrollo Mobile Nativo con Agentes IA
 
 Proyecto de app movil nativa (Android) que implementa un sistema de desarrollo asistido por agentes IA. Incluye un flujo completo de 5 etapas — desde la especificacion del ticket hasta el PR listo para merge — con validaciones de arquitectura, seguridad y calidad integradas en cada paso.
 
@@ -43,7 +43,7 @@ feature-xxx/
 ## Estructura del Proyecto
 
 ```
-HackersNew/
+framework-agentes-ia-mobile/
 ├── CLAUDE.md                    # Contexto del proyecto para el agente IA
 ├── AGENTS.md                    # Source of truth: roles, contratos, gates
 ├── .claude/
@@ -76,7 +76,7 @@ HackersNew/
 │           ├── arch.md          # Documento de arquitectura
 │           └── pr.md            # Documento del Pull Request
 └── app/                         # Codigo fuente Android
-    └── src/main/java/proyecto/com/hackersnew/
+    └── src/main/java/proyecto/com/framework-agentes-ia-mobile/
         ├── MainActivity.kt
         └── ui/theme/            # Design System
             ├── Color.kt
